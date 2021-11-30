@@ -1,0 +1,31 @@
+
+.con{
+ height: 10%;
+ width: 100%;
+  
+}
+
+.cardcustom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  margin-top:50px;
+  margin-bottom:50px; 
+}
+
+.cardimg{
+
+  height: 200px;
+  width: 100%;
+  
+}
+
+.false{
+  display: none;
+  
+}
+.true{
+  display: block;
+}

@@ -1,0 +1,74 @@
+{% extends "base.html"%}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for("static", filename="css/login.css") }}">
+{% endblock %}
+
+{% block title %}
+login page
+{% endblock %}
+
+{% block body %}
+<br>
+<!-- ++++++++++++++LOGIN-FORM+++++++++++++ -->
+<div class="container-sm rounded loginbox">
+  <div class="container-sm ">
+    <h2 style="text-align:center;">login</h2>
+    <br>
+  <div class="usericon">
+    <img class="rounded-circle usericon" src="{{ url_for("static", filename="img/user.png") }}" alt="icon">
+  </div>
+
+  <form action="#" method="POST">
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" name="passwd" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" name="cheack" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div class="{{ auth }}">
+    <p style="color;red;">
+      login failed........{{ f_message}}
+    </p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ++++++++VALIDATION-SCRIPT+++++++++++++++ -->
+<!-- // Example starter JavaScript for disabling form submissions if there are invalid fields -->
+<script>
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
+
+{% endblock %}

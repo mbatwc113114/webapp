@@ -1,0 +1,14 @@
+body{
+  background-attachment: fixed;
+  background-size: cover; 
+  
+
+}
+
+.false{
+  display: none;
+  
+}
+.true{
+  display: block;
+}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for("static", filename="css/profile.css") }}">
+{% endblock%}
+
+{% block title %}
+profile page
+{% endblock%}
+
+{% block body %}
+
+
+<br>
+<!-- ++++++++++++++LOGIN-FORM+++++++++++++ -->
+<div class="container-sm rounded profilebox">
+  <div class="container-sm">
+  <div class="usericon">
+    <img class="rounded-circle usericon" src="{{ url_for("static", filename="img/user.png") }}" alt="icon">
+    <div class="mb-3 {{ edit_cancel }}">
+      <a href="{{ url_for("edit") }}" >edit</a>
+    </div>
+    <div class="mb-3 {{ edit }}">
+      <a href="{{ url_for("profile") }}">cancel</a>
+    </div>
+  </div>
+
+  <form action="{{ url_for("edit") }}" method="POST">
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <p>{{ email }}</p>
+    </div>
+
+    <div class="mb-3 ">
+      <label for="exampleInputname" class="form-label">Name</label>
+      <p >{{ name }}</p>
+      <input type="text" class="form-control {{ edit }}" name="edit_name" id="exampleInputname">
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary {{ edit }}">Comit change</button>
+  </form>
+
+</div>
+</div>
+
+
+<!-- ++++++++VALIDATION-SCRIPT+++++++++++++++ -->
+<!-- // Example starter JavaScript for disabling form submissions if there are invalid fields -->
+<script>
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
+
+
+{% endblock%}
