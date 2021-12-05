@@ -41,6 +41,14 @@ body{
             <li class="nav-item">
               <a class="nav-link {{ tool_mode }}" href="{{ url_for("tool") }}">tool</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link {{ blog_mode }}" href="{{ url_for("blog") }}">blog</a>
+            </li>
+            <li class="nav-item {{ logout }}">
+              <a class="nav-link {{ addblog_mode }}" href="{{ url_for("addblog") }}">Add blog</a>
+            </li>
+
             <li class="nav-item dropdown {{ logout }}">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Account
@@ -62,7 +70,7 @@ body{
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {{ logout }}" href="{{ url_for("login") }}">Log-out</a>
+              <a class="nav-link {{ logout }}" href="{{ url_for("logout") }}">Log-out</a>
             </li>
           </ul>
           <form class="d-flex">

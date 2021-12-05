@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static' , filename="css/blog.css")}}">
+{% endblock %}
+
+{% block title %}
+Tool-x Add blog
+{% endblock %}
+
+{% block body %}
+
+<!-- ++++++++++MAIN_BODY+++++++++++++++ -->
+
+<div class="container-sm">
+  
+  <form class="row g-3" method="POST" action="{{ url_for('addblog' )}}" >
+  <div class="col-md-4">
+    <label for="validationServer01" class="form-label">Title</label>
+    <input type="text" name="title" class="form-control is-valid" id="validationServer01" value="Mark" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationServer02" class="form-label">body</label>
+    <input type="text" name="body" class="form-control is-valid" id="validationServer02" value="Otto" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>
+
+
+</div> 
+{% endblock %}

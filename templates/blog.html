@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static' , filename="css/blog.css")}}">
+{% endblock %}
+
+{% block title %}
+Tool-x blog
+{% endblock %}
+
+{% block body %}
+
+<!-- ++++++++++MAIN_BODY+++++++++++++++ -->
+
+<div class="container-sm">
+  <!-- {{ blog_list }}   -->
+  {% for i in blog_list %}
+  <!-- {{ blog_list[i] }} -->
+  <div class="card mb-3 ">
+    <img src="{{ blog_list[i]['url'] }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ blog_list[i]['title'] }}</h5>
+      <p class="card-text">{{ blog_list[i]['body'] }}</p>
+      <p class="card-text"><small class="text-muted">{{ blog_list[i]['status'] }}</small></p>
+    </div>
+  </div>
+  
+  {% endfor %}
+</div>
+
+
+{% endblock %}

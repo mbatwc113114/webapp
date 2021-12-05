@@ -1,6 +1,9 @@
 from flask import Flask, render_template, url_for, redirect, request, session
 import pyrebase as fire
-from datetime import timedelta
+from datetime import timedelta, time
+from datetime import datetime
+import pdfkit as pd
+
 
 firebaseConfig = {
   'apiKey': "AIzaSyC1eB-OAHVH9XDQtM3dXPsLjfdSvaljf-Y",
@@ -32,14 +35,20 @@ def add_user(user,name,email,passwd):
   data = {'id':user['userId'],'name':name,'email':email,'passwd':passwd}
   db.child("user").child(user['userId']).set(data)
 
+def add_blog(userId,title,url,body):
+  now = datetime.now()
+  status = now.strftime("%H:%M:%S")
+  data = {'title':title, 'body':body, 'status':status, 'userId':userId, 'url':url }
+  db.child('blog').push(data)
+
 
 
 @app.route("/")
 def home():
   if "email" in session:
-    return render_template("home.html", signin ="false", login = "false", logout = "true", home_mode = "active" ,tool_mode ="")
+    return render_template("home.html", login = "false", logout = "true", home_mode = "active" ,)
   else:
-    return render_template("home.html",login = "true", signin ="true", logout = "false", home_mode = "active", tool_mode ="")
+    return render_template("home.html", login = "true", logout = "false", home_mode = "active" )
 
 @app.route("/login", methods=["GET","POST"])
 def login():
@@ -66,18 +75,21 @@ def login():
     except Exception as e:
       # returing the reason for login fialed
       print(e)
-      return render_template("login.html", login = 'true', logout ='false', home_mode = "", f_message="invalid username or password", auth = "true", tool_mode = "")
+      return render_template("login.html", login = 'true', logout ='false', f_message="invalid username or password", auth = "true")
 
   else:
     return render_template("login.html", login = "true", logout="false", auth = 'false')
 
 @app.route("/tool")
 def tool():
-  return render_template("tool.html", home_mode ="", tool_mode = "active")
+  if 'email' in session:
+    return render_template("tool.html", blog_mode='', home_mode ="", tool_mode = "active", login='false', logout='true')
+  else:
+    return render_template("tool.html",login = 'true', logout = 'false', tool_mode = "active")
 
 @app.route("/logout")
 def logout():
-  session.pop()
+  session.pop('email',None)
   return redirect(url_for("home"))
 
 
@@ -122,7 +134,30 @@ def edit():
 
   return render_template("profile.html", login = 'false', logout = 'true', edit = "true", edit_cancel = "false", name = session['name'], email = session['email'])
 
+@app.route("/addblog" , methods=['GET', 'POST'])
+def addblog():
+  if request.method == 'POST' :
+    title = request.form['title']
+    body = request.form['body']
+    url = ""
 
+    add_blog(session['userId'],title,url,body)
+    return render_template("addblog.html", login = "false", logout = "true", addblog_mode = "active"  )
+  else:
+    return render_template("addblog.html", login = "false", logout = "true", addblog_mode = "active")
+
+
+@app.route("/blog")
+def blog():
+  data = db.child("blog").get().val()
+  data = dict(data)
+  if "email" in session:
+    return render_template("blog.html", login = "false", logout = "true", blog_mode = "active" , blog_list = data )
+  else:
+    return render_template("blog.html", login = "true", logout = "false", blog_mode = "active", blog_list = data )
+
+if __name__ == "__main__":
+  pass
 '''
 @app.route("/form", methods=['GET','POST'])
 
