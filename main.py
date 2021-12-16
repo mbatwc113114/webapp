@@ -50,6 +50,14 @@ def home():
   else:
     return render_template("home.html", login = "true", logout = "false", home_mode = "active" )
 
+@app.route("/sahid")
+def sahid():
+  if "email" in session:
+    return render_template("sahid.html", login = "false", logout = "true", home_mode = "active" ,)
+  else:
+    return render_template("sahid.html", login = "true", logout = "false", home_mode = "active" )
+
+
 @app.route("/login", methods=["GET","POST"])
 def login():
   user = dict()
@@ -136,16 +144,18 @@ def edit():
 
 @app.route("/addblog" , methods=['GET', 'POST'])
 def addblog():
-  if request.method == 'POST' :
-    title = request.form['title']
-    body = request.form['body']
-    url = ""
+  if 'email' in session:
+    if request.method == 'POST' :
+      title = request.form['title']
+      body = request.form['body']
+      url = ""
 
-    add_blog(session['userId'],title,url,body)
-    return render_template("addblog.html", login = "false", logout = "true", addblog_mode = "active"  )
+      add_blog(session['userId'],title,url,body)
+      return render_template("addblog.html", login = "false", logout = "true", addblog_mode = "active"  )
+    else:
+      return render_template("addblog.html", login = "false", logout = "true", addblog_mode = "active")
   else:
-    return render_template("addblog.html", login = "false", logout = "true", addblog_mode = "active")
-
+    return "<h1>NOT AUTHORIESD ! </h1>"
 
 @app.route("/blog")
 def blog():
@@ -155,6 +165,12 @@ def blog():
     return render_template("blog.html", login = "false", logout = "true", blog_mode = "active" , blog_list = data )
   else:
     return render_template("blog.html", login = "true", logout = "false", blog_mode = "active", blog_list = data )
+
+@app.route("/p")
+def mylove():
+  return render_template("p.html")
+
+
 
 if __name__ == "__main__":
   pass
@@ -174,4 +190,4 @@ def result(usr):
   return f"{usr} form submited"
 '''
 
-app.run(host="0.0.0.0", port=8080, debug=True)
+app.run(host="0.0.0.0", debug=False)

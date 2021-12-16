@@ -1,14 +1,18 @@
 body{
   background-attachment: fixed;
   background-size: cover; 
-  
+  background-color: lightblue;
 
 }
 
 .false{
   display: none;
   
+  
 }
 .true{
   display: block;
+}
+.shad{
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.5);
 }

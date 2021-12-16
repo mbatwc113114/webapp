@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/sahid.css") }}">
+{% endblock %}
+{% block title %}
+Sahid
+{% endblock %}
+{% block body %}
+<div class="container-fluid display">
+  <div class="row ">
+    <div class="col-sm">
+      <div class="card my-5 mp-4">
+        <h1>search</h1>            
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card my-5 mp-4">
+            <h1>info</h1>  
+      </div>
+
+    </div>
+
+    <div class="col-sm">
+      <div class="card my-5 mp-4">
+        <h1>news</h1>            
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card my-5 mp-4">
+      <h1>facts</h1>              
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+{% endblock %}
