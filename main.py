@@ -1,8 +1,6 @@
 from flask import Flask, render_template, url_for, redirect, request, session
 import pyrebase as fire
-from datetime import timedelta, time
-from datetime import datetime
-import pdfkit as pd
+from datetime import timedelta, time, datetime
 
 
 firebaseConfig = {
@@ -20,8 +18,6 @@ firebase = fire.initialize_app(firebaseConfig)
 
 db = firebase.database()
 auth = firebase.auth()
-
-
 
 
 
@@ -166,9 +162,21 @@ def blog():
   else:
     return render_template("blog.html", login = "true", logout = "false", blog_mode = "active", blog_list = data )
 
-@app.route("/p")
-def mylove():
-  return render_template("p.html")
+
+
+@app.route("/forget", methods = ["GET", "POST"] )
+def forget():
+  if request.method == "POST":
+    try:
+      email = request.form["email"]
+      auth.send_password_reset_email(email)
+      return render_template("forget.html", login = 'false', logout = 'true', f_message="email send")
+    except:
+      return render_template("forget.html", login = 'false', logout = 'true', f_message="email not found")
+
+  return render_template("forget.html", login = 'false', logout = 'true')
+
+
 
 
 

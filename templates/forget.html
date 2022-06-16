@@ -1,16 +1,19 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 
 
 {% block title %}
-login page
+reset password
+
 {% endblock %}
 
 {% block body %}
+
+
 <br>
 <!-- ++++++++++++++LOGIN-FORM+++++++++++++ -->
 <div class="container-sm rounded loginbox">
   <div class="container-sm ">
-    <h2 style="text-align:center;">login</h2>
+    <h2 style="text-align:center;">Reset Password</h2>
     <br>
   <div class="usericon">
     <img class="rounded-circle usericon" src="{{ url_for("static", filename="img/user.png") }}" alt="icon">
@@ -20,23 +23,15 @@ login page
 
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Emter Email to send reset mail">
       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
 
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" name="passwd" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" name="cheack" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <div class="{{ auth }}">
     <p style="color;red;">
-      login failed........{{ f_message}}
+      {{ f_message}}
     </p>
   </div>
 

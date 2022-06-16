@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 
 
-{% block head %}
-
-<link rel="stylesheet" href="{{ url_for("static", filename="css/profile.css") }}">
-{% endblock%}
-
 {% block title %}
 profile page
 {% endblock%}
@@ -20,10 +15,10 @@ profile page
   <div class="usericon">
     <img class="rounded-circle usericon" src="{{ url_for("static", filename="img/user.png") }}" alt="icon">
     <div class="mb-3 {{ edit_cancel }}">
-      <a href="{{ url_for("edit") }}" >edit</a>
+      <a href="{{ url_for("edit") }}" >Edit Profile</a>
     </div>
     <div class="mb-3 {{ edit }}">
-      <a href="{{ url_for("profile") }}">cancel</a>
+      <a href="{{ url_for("profile") }}">Cancel</a>
     </div>
   </div>
 
@@ -41,7 +36,7 @@ profile page
     </div>
     
 
-    <button type="submit" class="btn btn-primary {{ edit }}">Comit change</button>
+    <button type="submit" class="btn btn-primary {{ edit }}">Save Changes</button>
   </form>
 
 </div>

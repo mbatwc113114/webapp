@@ -13,10 +13,9 @@
     {% block title %}
     {% endblock %}
     </title>
-<link rel="stylesheet" href="{{ url_for("static", filename="css/base.css")}}">
+<link rel="stylesheet" href="{{ url_for("static", filename="css/style.css")}}">
 
-    {% block head %}
-    {% endblock %}
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
   </head>
 
@@ -33,44 +32,41 @@
               <a class="nav-link {{ home_mode }}" aria-current="page" href="{{ url_for("home") }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ tool_mode }}" href="{{ url_for("tool") }}">tool</a>
+              <a class="nav-link {{ tool_mode }}" href="{{ url_for("tool") }}">Tool</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {{ blog_mode }}" href="{{ url_for("blog") }}">blog</a>
+              <a class="nav-link {{ blog_mode }}" href="{{ url_for("blog") }}">Blog</a>
             </li>
             <li class="nav-item {{ logout }}">
-              <a class="nav-link {{ addblog_mode }}" href="{{ url_for("addblog") }}">Add blog</a>
+              <a class="nav-link {{ addblog_mode }}" href="{{ url_for("addblog") }}">Add Blog</a>
             </li>
 
+            <!-- --profile--model-- -->
             <li class="nav-item dropdown {{ logout }}">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Account
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{ url_for("profile") }}">Profile</a></li>
+                <li class="btn"><a class="dropdown-item" href="{{ url_for("profile") }}">Profile</a></li>
                 
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Reset password</a></li>
+                <li class="btn"><a class="dropdown-item" href="{{ url_for("forget") }}">Reset Password</a></li>
               </ul>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link {{ login }}" href="{{ url_for("login") }}">Log-in</a>
+              <a class="nav-link {{ login }}" href="{{ url_for("login") }}">Log-In</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {{ login }}" href="{{ url_for("signin") }}">Sign-in</a>
+              <a class="nav-link {{ login }}" href="{{ url_for("signin") }}">Sign-In</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link {{ logout }}" href="{{ url_for("logout") }}">Log-out</a>
+              <a class="nav-link {{ logout }}" href="{{ url_for("logout") }}">Log-Out</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>
